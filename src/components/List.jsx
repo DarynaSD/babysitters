@@ -4,7 +4,7 @@ import ListItem from "./ListItem";
 
 const List = ({data}) => {
 
-    console.log("data in list  >>", data);
+    // console.log("data in list  >>", data);
 
   return (
     <ul>
