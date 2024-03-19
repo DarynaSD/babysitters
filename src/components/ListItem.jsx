@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import svg from "../img/sprite.svg";
 
@@ -27,26 +28,47 @@ import {
   Raiting,
   Button,
 } from "./styled/Li.styled";
+import { useDispatch } from "react-redux";
+import { addFav, removeFav, toggleFav } from "../redux/slice";
+import { PopUp } from "./PopUp";
 
-/* eslint-disable react/prop-types */
-const ListItem = ({one}) => {
+const ListItem = ({ one }) => {
   const [ismore, setIsmore] = useState(false);
-  const [like, setLike] = useState(false);
+  // const [like, setLike] = useState(false);
+  const [popUp, setPopUp] = useState(false);
+
+  const dispatch = useDispatch();
+
   const originalDate = new Date(one.birthday);
   const today = new Date();
   const originalYear = originalDate.getFullYear();
   const todayYear = today.getFullYear();
   const differenceInYears = todayYear - originalYear;
 
-  const showMore = () => {
-    setIsmore(!ismore);
+  // коли буде готова логінка, замінити на дані зі стейта
+  const isLoggedIn = true;
+
+  const { isLiked } = one;
+
+  // click on heart for logged user or guest
+  const toggleFavorite = (itemId) => {
+    console.log(itemId);
+    dispatch(toggleFav(itemId));
+    
+    isLiked ? dispatch(removeFav(one)) : dispatch(addFav(one));
   };
 
-  const handleLike = () => {
-    // !isLiked
-    // 	? dispatch(addCard(data))
-    // 	: dispatch(removeCard(data.id));
-    setLike(!like);
+  const openPopUp = () => {
+    setPopUp(true);
+  };
+
+  const closePopUp = () => {
+    setPopUp(false);
+  };
+
+  // for detailes in card
+  const showMore = () => {
+    setIsmore(!ismore);
   };
 
   const characters = one.characters.join(", ");
@@ -72,8 +94,12 @@ const ListItem = ({one}) => {
           </TechItem>
         </TechList>
 
-        <HeartButton onClick={handleLike}>
-          {like ? (
+        <HeartButton
+          onClick={
+            isLoggedIn ? () => toggleFavorite(one.id) : () => openPopUp()
+          }
+        >
+          {isLiked ? (
             <use href={`${svg}#icon-heart-active`}></use>
           ) : (
             <use href={`${svg}#icon-heart`}></use>
@@ -127,12 +153,11 @@ const ListItem = ({one}) => {
                 </li>
               ))}
             </ReviewsList>
-            <Button type="button">
-              Make an appointment
-            </Button>
+            <Button type="button">Make an appointment</Button>
           </Reviews>
         )}
       </div>
+      {popUp && <PopUp closePopUp={closePopUp} />}
     </Card>
   );
 };

@@ -1,6 +1,6 @@
 // import { fetchNannies } from "../firebase/fetchNannies";
 import List from "../components/List";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectNannies } from "../redux/selectors";
 import { fetchAllNannies } from "../redux/thunk";
