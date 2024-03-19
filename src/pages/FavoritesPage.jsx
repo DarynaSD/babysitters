@@ -1,8 +1,13 @@
+import { Section, Wrap } from "./styled/main.styled";
+
 const FavoritesesPage = () => {
   return (
-    <section>
+    <Wrap>
+    <Section>
       <div>im FavoritesesPage</div>
-    </section>
+    </Section>
+    </Wrap>
+
   );
 };
 

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectNannies } from "../redux/selectors";
 import { fetchAllNannies } from "../redux/thunk";
+import { Section, Wrap } from "./styled/main.styled";
 
 const NanniesPage = () => {
   const dispatch = useDispatch();
@@ -19,10 +20,11 @@ const NanniesPage = () => {
 
 
   return (
-    <section>
-      <div>im NanniesPage</div>
+    <Wrap>
+    <Section>
       <List data={data} />
-    </section>
+    </Section>
+    </Wrap>
   );
 };
 

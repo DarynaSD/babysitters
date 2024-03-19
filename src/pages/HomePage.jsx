@@ -1,8 +1,12 @@
+import { Section, Wrap } from "./styled/main.styled";
+
 export const HomePage = () => {
   return (
-    <section>
+    <Wrap>
+    <Section>
       <div>im HomePage</div>
-    </section>
+    </Section>
+    </Wrap>
   );
 };
 
