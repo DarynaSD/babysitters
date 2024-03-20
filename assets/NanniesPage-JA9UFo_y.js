@@ -1,1 +1,0 @@
-import{u as t,a as o,r,f as n,j as e,W as c,S as i}from"./index-C1E0EIuC.js";import{s as l,L as f}from"./selectors-Dadjh9T3.js";const x=()=>{const a=t(),s=o(l);return console.log("data from selector >>",s),r.useEffect(()=>{(!s||!s.length)&&a(n())},[a,s]),e.jsx(c,{children:e.jsx(i,{children:e.jsx(f,{data:s})})})};export{x as default};
