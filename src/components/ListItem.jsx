@@ -28,11 +28,12 @@ import {
   Raiting,
   Button,
 } from "./styled/Li.styled";
-import { useDispatch } from "react-redux";
-import { addFav, removeFav, toggleFav } from "../redux/slice";
+import { useDispatch, useSelector } from "react-redux";
+import { addFav, removeFav } from "../redux/slice";
 import { PopUp } from "./PopUp";
+import { selectFav } from "../redux/selectors";
 
-const ListItem = ({ one }) => {
+const ListItem = ({ one, isOnFavPage }) => {
   const [ismore, setIsmore] = useState(false);
   // const [like, setLike] = useState(false);
   const [popUp, setPopUp] = useState(false);
@@ -48,14 +49,16 @@ const ListItem = ({ one }) => {
   // коли буде готова логінка, замінити на дані зі стейта
   const isLoggedIn = true;
 
-  const { isLiked } = one;
-
   // click on heart for logged user or guest
+  // checking heart status
+  const favs = useSelector(selectFav);
+  const isLiked = favs.map((fav) => fav.id).includes(one.id);
+
   const toggleFavorite = (itemId) => {
     console.log(itemId);
-    dispatch(toggleFav(itemId));
-    
-    isLiked ? dispatch(removeFav(one)) : dispatch(addFav(one));
+    if (isOnFavPage) {
+      dispatch(removeFav(one));
+    } else isLiked ? dispatch(removeFav(one)) : dispatch(addFav(one));
   };
 
   const openPopUp = () => {

@@ -20,8 +20,8 @@ const FavoritesesPage = () => {
             your favorites for easier access in the future.
           </Empty>
         ) : (
-          <List data={data} />
-        ) }
+          <List data={data} isOnFavPage />
+        )}
       </Section>
     </Wrap>
   );
