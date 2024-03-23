@@ -17,7 +17,7 @@ import { nanniesReducer } from './slice';
 const nanniesPersistConfig = {
   key: 'nannies',
   storage,
-  whitelist: ['favorites', 'page'],
+  whitelist: ['favorites', 'filter', 'page'],
 };
 
 export const store = configureStore({

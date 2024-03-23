@@ -4,7 +4,7 @@ import { fetchAllNannies } from "./thunk";
 const initialState = {
   nannies: [],
   favorites: [],
-  filter: "Show all",
+  filter: "popular",
   page: 1,
   isLoading: false,
   error: null,
@@ -34,6 +34,10 @@ const nanniesSlice = createSlice({
 
     savePage(state, action) {
       state.page = action.payload;
+    },
+
+      saveFilter(state, action) {
+      state.filter = action.payload.toString();
     }
   },
 
@@ -53,5 +57,5 @@ const nanniesSlice = createSlice({
       }),
 });
 
-export const { toggleFav, addFav, removeFav, savePage } = nanniesSlice.actions;
+export const { toggleFav, addFav, removeFav, savePage, saveFilter } = nanniesSlice.actions;
 export const nanniesReducer = nanniesSlice.reducer;

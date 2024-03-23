@@ -3,16 +3,18 @@ import { selectFav } from "../redux/selectors";
 import { Section, Wrap } from "./styled/main.styled";
 import List from "../components/List";
 import { Empty } from "../components/styled/Empty.styled";
+import Filter from "../components/Filter";
 
 const FavoritesesPage = () => {
 
   const data = useSelector(selectFav);
-  console.log("data from fav >>", data);
+  // console.log("data from fav >>", data);
 
 
   return (
     <Wrap>
       <Section>
+        <Filter />
         {!data || !data.length ? (
           <Empty>
             It appears that you haven`&#39;`t added any nannies to your
